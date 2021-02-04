@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Slider from "react-slick";
+
 import SelectColor from "../../components/SelectColor";
 import SelectSize from "../../components/SelectSize";
 import Contador from "../../components/Contador";
@@ -8,25 +10,59 @@ import Contador from "../../components/Contador";
 import './style.css';
 
 const Produto: React.FC = () => {
+    const settings = {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        fade: false,
+        adaptiveHeight: true,
+        autoplay: true,
+        infinite: true,
+        autoplaySpeed: 500,
+        speed: 1000,
+        useTransform: true,
+        cssEase: 'cubic-bezier(0.77, 0, 0.18, 1)',
+      };
+
     return (
         <>
             <div className="d-lg-flex container-lg px-0 mt-lg-5">
+
                 {/* CARROCEL */}
+
+                <div className="container align-self-lg-start divide_tela mb-3">
+                    <Slider {...settings}>
+                        <div className="slider_box_img">
+                            <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
+                        </div>
+                        <div className="slider_box_img">
+                            <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
+                        </div>
+                        <div className="slider_box_img">
+                            <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
+                        </div>
+                        <div className="slider_box_img">
+                            <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
+                        </div>
+                    </Slider>
+                </div>
+
                 {/* <div id="carrocel" className="divide_tela container">
                     <div id="slider_container">
                         <div id="slider_box">
                             <div className="slider_custom">
                                 <div className="slider_box_img">
-                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" />
+                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
                                 </div>
                                 <div className="slider_box_img">
-                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" />
+                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
                                 </div>
                                 <div className="slider_box_img">
-                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" />
+                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
                                 </div>
                                 <div className="slider_box_img">
-                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" />
+                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
                                 </div>
                             </div>
                         </div>

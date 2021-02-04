@@ -33,7 +33,7 @@
     opacity: 1;
 }
 .slick-slide {
-    outline: none; /* Remove a borda que aparece quando seleciona um slide */
+    outline: none;
 }
 
 
