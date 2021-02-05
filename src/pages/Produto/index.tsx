@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Slider from "react-slick";
@@ -23,14 +23,34 @@ const Produto: React.FC = () => {
         speed: 1000,
         useTransform: true,
         cssEase: 'cubic-bezier(0.77, 0, 0.18, 1)',
-      };
+    };
+
+    const [estoque, setEstoque] = useState(10);
+    const [quantidade, setQuantidade] = useState(0);
+    const [total, setTotal] = useState(0);
+
+    const Somar = useCallback(() => {
+        if (estoque > 0) {
+            const nova_quantidade = quantidade + 1;
+            setEstoque(estoque - 1);
+            setQuantidade(nova_quantidade);
+            setTotal(nova_quantidade * 10);
+        }
+    }, [quantidade, estoque]);
+
+    const Subtrair = useCallback(() => {
+        if (quantidade > 0) {
+            const nova_quantidade = quantidade - 1;
+            setEstoque(estoque + 1);
+            setQuantidade(nova_quantidade);
+            setTotal(nova_quantidade * 10);
+        }
+    }, [quantidade, estoque]);
 
     return (
         <>
             <div className="d-lg-flex container-lg px-0 mt-lg-5">
-
                 {/* CARROCEL */}
-
                 <div className="container align-self-lg-start divide_tela mb-3">
                     <Slider {...settings}>
                         <div className="slider_box_img">
@@ -47,27 +67,6 @@ const Produto: React.FC = () => {
                         </div>
                     </Slider>
                 </div>
-
-                {/* <div id="carrocel" className="divide_tela container">
-                    <div id="slider_container">
-                        <div id="slider_box">
-                            <div className="slider_custom">
-                                <div className="slider_box_img">
-                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
-                                </div>
-                                <div className="slider_box_img">
-                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
-                                </div>
-                                <div className="slider_box_img">
-                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
-                                </div>
-                                <div className="slider_box_img">
-                                    <img src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Slider img" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
 
                 {/* OPÇÕES  */}
                 <form method="get" action="none" id="form_opcoes" className="divide_tela container px-lg-4">
@@ -89,14 +88,20 @@ const Produto: React.FC = () => {
                         </div>
                     </div>
 
+                    
                     <div className="opcoes_qtd mb-5">
-                        <h2 className="opcoes_titulo">QUANTIDADE <span id="qrd_estoque">(9 DISPONÍVEIS)</span></h2>
+                        <h2 className="opcoes_titulo">
+                            QUANTIDADE <span id="qtd_estoque">({estoque} DISPONÍVEIS)</span>
+                        </h2>
 
                         <div className="d-flex align-items-center flex-wrap">
-                            <Contador className="mr-2" target="opcoes_qtd_total" />
-                            <div id="opcoes_qtd_total" data-valor-unitario="10">R$ 10,00</div>
+                            <Contador onSomar={Somar} onSubtrair={Subtrair} quantidade={quantidade} className="mr-2" />
+                            <div id="opcoes_qtd_total" data-valor-unitario="10">
+                                {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 } )}
+                            </div>
                         </div>
                     </div>
+
 
                     <div className="mb-5 mb-lg-0">
                         <div className="">
@@ -161,8 +166,6 @@ const Produto: React.FC = () => {
                     <i className="card_peca" aria-hidden="true"></i>
                 </div>
             </div>
-
-
         </>
     );
 }
