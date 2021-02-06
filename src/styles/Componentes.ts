@@ -39,6 +39,7 @@ export default createGlobalStyle`
         width: 100%;
         font-size: 18px;
         line-height: 22px;
+        text-align: center;
         border-radius: 8px;
         border: 1px solid transparent;
         padding: 15px;
@@ -104,13 +105,11 @@ export default createGlobalStyle`
     .passeios_scroll {
         overflow-x: scroll;
     }
-
     .card_list {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
     }
-
     .card_peca, .card_destaq {
         text-align: center;
         background: #FFE8F3;
@@ -118,48 +117,43 @@ export default createGlobalStyle`
         border-radius: 10px;
         margin-bottom: 20px;
     }
-
+    .card_peca > a:hover, .card_destaq > a:hover {
+        text-decoration: none;
+    }
     i.card_peca {
         background: transparent;
         box-shadow: none;
         border-radius: 0;
     }
-
     .card_img {
         min-height: 100px;
         border-radius: 10px;
-        background-image: url(https://dummyimage.com/400x300.png/09f/fff);
+        background-image: url('https://dummyimage.com/400x300.png/09f/fff');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
     }
-
     .card_conteudo {
         padding: 10px;
     }
-
     .card_titulo {
         color: #323232;
         font-size: 14px;
         line-height: 16px;
     }
-
     .card_cores {
         display: flex;
         justify-content: center;
     }
-
     .card_cores > div {
         height: 12px;
         width: 12px;
         border-radius: 50%;
         margin-right: 10px;
     }
-
     .card_cores > div:last-child {
         margin-right: 0;
     }
-
     .card_valor {
         color: #DD3C88;
         font-weight: bold;
@@ -167,7 +161,6 @@ export default createGlobalStyle`
         line-height: 20px;
         text-transform: uppercase;
     }
-
     .card_botao > a {
         display: flex;
         justify-content: center;
@@ -185,7 +178,6 @@ export default createGlobalStyle`
         text-transform: uppercase;
         transition: .4s;
     }
-
     .card_botao > a:hover {
         background-color: #EF5FA3;
         text-decoration: none;

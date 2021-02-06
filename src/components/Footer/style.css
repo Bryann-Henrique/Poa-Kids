@@ -1,0 +1,44 @@
+/* RODAPÉ */
+#rodape {
+    position: relative;
+    background-color: #DD3C88;
+    min-height: 200px;
+    color: white;
+}
+
+#rodape_logo {
+    position: relative;
+    top: -1px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 0px 60px;
+    text-align: center;
+    z-index: 999;
+}
+
+#rodape_logo > img {
+    max-width: 150px;
+    height: auto;
+}
+
+#rodape_info {
+    background: radial-gradient(50% 50% at 50% 50%, #EF5FA3 0%, #DD3C88 100%);
+    border-radius: 0px;
+}
+
+#rodape_info > p {
+    font-size: 12px;
+    line-height: 14px;
+}
+
+#rodape_info a:hover {
+    text-decoration: none;
+}
+
+#rodape_info svg {
+    transition: .4s;
+}
+
+#rodape_info svg:hover {
+    transform: scale(1.4);
+}

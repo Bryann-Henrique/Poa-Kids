@@ -3,6 +3,8 @@ import { FiInstagram, FiFacebook } from "react-icons/fi";
 
 import Logo from '../../assets/img/logomarca.png';
 
+import './style.css';
+
 const Footer: React.FC = () => {
 
     return (

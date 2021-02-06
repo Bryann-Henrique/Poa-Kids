@@ -5,8 +5,8 @@ import { Container } from './style';
 interface ContadorProps {
   className?: string;
   quantidade?: number;
-  onSomar(): void;
-  onSubtrair(): void;
+  onSomar?(): void;
+  onSubtrair?(): void;
 }
 
 const Contador = ({ quantidade, onSubtrair, onSomar, ...props }: ContadorProps) => {
@@ -20,6 +20,7 @@ const Contador = ({ quantidade, onSubtrair, onSomar, ...props }: ContadorProps) 
         min="0"
         max="99"
         className="control_number_valor"
+        onChange={()=>{}} 
       />
       <input onClick={onSomar} className="control_number_soma" value="+" type="button" />
     </Container>

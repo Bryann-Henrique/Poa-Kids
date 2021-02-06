@@ -30,13 +30,6 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <div>
-                <Link to="/produto">PRODUTO</Link>
-            </div>
-
-            <div>
-            </div>
-
             {/* <div id="carrocel" className="container">
                 <div id="slider_container">
                     <div id="prev">
@@ -89,18 +82,21 @@ const Home: React.FC = () => {
                 <div className="d-flex passeios_scroll pb-2" onScroll={handleSeta}>
                     {[...Array(8)].map( (value, index) => (
                         <div id="ancora_seta" className="card_destaq" key={index}>
-                            <div className="card_img"></div>
-                            <div className="card_conteudo">
-                                <h3 className="card_titulo">TITULO DA PEÇA</h3>
-                                <div className="card_cores mb-2">
-                                    <div style={{background: "#EF5FA3"}}></div>
-                                    <div style={{background: "#56C7D9"}}></div>
-                                    <div style={{background: "#E9BD90"}}></div>
+                            <Link to="/produto">
+                                <div className="card_img"></div>
+                                <div className="card_conteudo">
+                                    <h3 className="card_titulo">TITULO DA PEÇA</h3>
+                                    <div className="card_cores mb-2">
+                                        <div style={{background: "#EF5FA3"}}></div>
+                                        <div style={{background: "#56C7D9"}}></div>
+                                        <div style={{background: "#E9BD90"}}></div>
+                                    </div>
+                                    <div className="card_valor">
+                                        R$ 99,99
+                                    </div>
                                 </div>
-                                <div className="card_valor">
-                                    R$ 99,99
-                                </div>
-                            </div>
+                            </Link>
+
                             <div className="card_botao">
                                 <Link to="/produto">ADD AO CARRINHO</Link>
                             </div>
@@ -131,18 +127,21 @@ const Home: React.FC = () => {
                 <div className="card_list container-sm">
                     {[...Array(7)].map( (value, index) => (
                         <div className="card_peca" key={index}>
-                            <div className="card_img"></div>
-                            <div className="card_conteudo">
-                                <h3 className="card_titulo">TITULO DA PEÇA</h3>
-                                <div className="card_cores mb-2">
-                                    <div style={{background: "#EF5FA3"}}></div>
-                                    <div style={{background: "#56C7D9"}}></div>
-                                    <div style={{background: "#E9BD90"}}></div>
+                            <Link to="/produto">
+                                <div className="card_img"></div>
+                                <div className="card_conteudo">
+                                    <h3 className="card_titulo">TITULO DA PEÇA</h3>
+                                    <div className="card_cores mb-2">
+                                        <div style={{background: "#EF5FA3"}}></div>
+                                        <div style={{background: "#56C7D9"}}></div>
+                                        <div style={{background: "#E9BD90"}}></div>
+                                    </div>
+                                    <div className="card_valor">
+                                        R$ 99,99
+                                    </div>
                                 </div>
-                                <div className="card_valor">
-                                    R$ 99,99
-                                </div>
-                            </div>
+                            </Link>
+
                             <div className="card_botao">
                                 <Link to="/produto">ADD AO CARRINHO</Link>
                             </div>

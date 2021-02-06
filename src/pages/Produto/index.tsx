@@ -87,7 +87,6 @@ const Produto: React.FC = () => {
                             {[1,2,4,6,8,12,14,16].map( (value, index) => <SelectSize val={value} key={index} />)}
                         </div>
                     </div>
-
                     
                     <div className="opcoes_qtd mb-5">
                         <h2 className="opcoes_titulo">
@@ -102,11 +101,11 @@ const Produto: React.FC = () => {
                         </div>
                     </div>
 
-
                     <div className="mb-5 mb-lg-0">
-                        <div className="">
-                            <button className="btn_principal mb-2" type="submit">COMPRAR AGORA</button>
-                            <button className="btn_secundario" type="button">ADD AO CARRINHO</button>
+                        <div className="d-flex flex-column flex-md-row">
+                            <Link to="/carrinho" className="btn_principal col-12 col-md-6 mb-2 mb-md-0 mr-md-2">COMPRAR AGORA</Link>
+                            {/* <button className="btn_principal col-12 col-md-6 mb-2 mb-md-0 mr-md-2" type="submit">COMPRAR AGORA</button> */}
+                            <button className="btn_secundario col-12 col-md-6" type="button">ADD AO CARRINHO</button>
                         </div>
 
                         <div className="fora_estoque d-none">
@@ -133,7 +132,7 @@ const Produto: React.FC = () => {
                 </div>
             </div>
 
-            {/* NOSSAS PEÇAS  */}
+            {/* PEÇAS RELACIONADAS */}
             <div id="pecas" className="mt-5 position-relative">
                 <div className="container mb-3">
                     <hr />
@@ -143,18 +142,21 @@ const Produto: React.FC = () => {
                 <div className="card_list container-sm">
                     {[...Array(7)].map( (value, index) => (
                         <div className="card_peca" key={index}>
-                            <div className="card_img"></div>
-                            <div className="card_conteudo">
-                                <h3 className="card_titulo">TITULO DA PEÇA</h3>
-                                <div className="card_cores mb-2">
-                                    <div style={{ background: "#EF5FA3" }}></div>
-                                    <div style={{ background: "#56C7D9" }}></div>
-                                    <div style={{ background: "#E9BD90" }}></div>
+                            <Link to="/produto">
+                                <div className="card_img"></div>
+                                <div className="card_conteudo">
+                                    <h3 className="card_titulo">TITULO DA PEÇA</h3>
+                                    <div className="card_cores mb-2">
+                                        <div style={{ background: "#EF5FA3" }}></div>
+                                        <div style={{ background: "#56C7D9" }}></div>
+                                        <div style={{ background: "#E9BD90" }}></div>
+                                    </div>
+                                    <div className="card_valor">
+                                        R$ 99,99
+                                    </div>
                                 </div>
-                                <div className="card_valor">
-                                    R$ 99,99
-                                </div>
-                            </div>
+                            </Link>
+
                             <div className="card_botao">
                                 <Link to="/produto">ADD AO CARRINHO</Link>
                             </div>
