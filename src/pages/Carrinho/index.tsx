@@ -1,33 +1,83 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Contador from '../../components/Contador';
 
 import './style.css';
 
-const Carrinho: React.FC = () => {
+interface IProduto {
+    idProduto: number;
+    quantidade:number;
+    valorUnitario:number;
+}
 
-    const [estoque, setEstoque] = useState(10);
-    const [quantidade, setQuantidade] = useState(0);
+const Carrinho: React.FC = () => {
+    const [produtos, setProdutos] = useState<IProduto[]>([]);
+
+    // const [estoque, setEstoque] = useState(10);
+    // const [quantidade, setQuantidade] = useState(0);
     const [total, setTotal] = useState(0);
 
-    const Somar = useCallback(() => {
-        if (estoque > 0) {
-            const nova_quantidade = quantidade + 1;
-            setEstoque(estoque - 1);
-            setQuantidade(nova_quantidade);
-            setTotal(nova_quantidade * 10);
-        }
-    }, [quantidade, estoque]);
+    useEffect(() => {
+        const pre_popular_produtor = async () => {
+            // setLoading(true);
+            await setTimeout(() => {
+                    setProdutos([
+                        {idProduto: 1, quantidade: 10, valorUnitario: 2.50},
+                        {idProduto: 2, quantidade: 10, valorUnitario: 2.50},
+                        {idProduto: 3, quantidade: 10, valorUnitario: 2.50},
+                        {idProduto: 4, quantidade: 10, valorUnitario: 2.50},
+                    ]);
+                    // setLoading(false);
+                }, 3000);
+        };
 
-    const Subtrair = useCallback(() => {
-        if (quantidade > 0) {
-            const nova_quantidade = quantidade - 1;
-            setEstoque(estoque + 1);
-            setQuantidade(nova_quantidade);
-            setTotal(nova_quantidade * 10);
-        }
-    }, [quantidade, estoque]);
+        pre_popular_produtor();
+    }, []);
+
+    const Somar = useCallback((idProduto: number) => {
+        // validação estoque.
+
+        const produtos_atualizados = produtos.map((produto: IProduto) => {
+            if (produto.idProduto == idProduto){
+                return {...produto, quantidade: produto.quantidade + 1}
+            }
+
+            return {...produto}
+        });
+
+        // setTotal(0);
+        setProdutos(produtos_atualizados);
+
+        // if (estoque > 0) {
+        //     const nova_quantidade = quantidade + 1;
+        //     setEstoque(estoque - 1);
+        //     setQuantidade(nova_quantidade);
+        //     setTotal(nova_quantidade * 10);
+        // }
+    }, [/*quantidade, estoque,*/ produtos]);
+
+    const Subtrair = useCallback((idProduto: number) => {
+        // validação estoque.
+
+        const produtos_atualizados = produtos.map((produto: IProduto) => {
+            if (produto.idProduto == idProduto){
+                return {...produto, quantidade: produto.quantidade - 1}
+            }
+
+            return {...produto}
+        });
+
+        // setTotal(0);
+        setProdutos(produtos_atualizados);
+
+        // if (quantidade > 0) {
+        //     const nova_quantidade = quantidade - 1;
+        //     setEstoque(estoque + 1);
+        //     setQuantidade(nova_quantidade);
+        //     setTotal(nova_quantidade * 10);
+        // }
+    }, [/*quantidade, estoque*/, produtos]);
 
     return (
         
@@ -40,7 +90,37 @@ const Carrinho: React.FC = () => {
             {/* PRODUTOS  */}
             <div>
 
-                {[...Array(4)].map( (value, index) => (
+                {produtos.map((produto:IProduto) => (
+                    <div className="card_produto position-relative d-block d-lg-flex align-items-center text-center text-lg-left py-5 py-lg-3 mb-4 mb-lg-0" key={produto.idProduto}>
+                    <div className="mb-3 mb-lg-0 flex-grow-1">
+                        <img className="img-fluid rounded" src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Imagem" />
+                    </div>
+
+                    <div className="mb-3 mb-lg-0 flex-grow-1">
+                        <h2 className="m-0">Lorem ipsum dolor sit</h2>
+                    </div>
+
+                    <div className="mb-3 mb-lg-0 flex-grow-1">
+                        <Contador onSomar={() => Somar(produto.idProduto)} onSubtrair={() => Subtrair(produto.idProduto)} quantidade={produto.quantidade} className="control_number mx-auto" />
+                    </div>
+
+                    <div className="card_produto_total flex-grow-1">
+                        {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 } )}
+                    </div>
+
+                    <div className="card_produto_delete">
+                        <button className="bt_produto_delete">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M17 1L1 17" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M1 1L17 17" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                ))}
+
+
+                {/* {[carrinho].map((produto: ICarrinho) => (
                     <div className="card_produto position-relative d-block d-lg-flex align-items-center text-center text-lg-left py-5 py-lg-3 mb-4 mb-lg-0" key={index}>
                         <div className="mb-3 mb-lg-0 flex-grow-1">
                             <img className="img-fluid rounded" src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Imagem" />
@@ -51,7 +131,7 @@ const Carrinho: React.FC = () => {
                         </div>
 
                         <div className="mb-3 mb-lg-0 flex-grow-1">
-                            <Contador onSomar={Somar} onSubtrair={Subtrair} quantidade={quantidade} className="control_number mx-auto" />
+                            <Contador onSomar={(produto.idProduto))} onSubtrair={Subtrair} quantidade={quantidade} className="control_number mx-auto" />
                         </div>
 
                         <div className="card_produto_total flex-grow-1">
@@ -67,7 +147,7 @@ const Carrinho: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                ))}
+                ))} */}
 
             </div>
 
