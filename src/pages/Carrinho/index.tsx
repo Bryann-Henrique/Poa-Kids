@@ -12,134 +12,90 @@ interface IProduto {
 }
 
 const Carrinho: React.FC = () => {
-    const [produtos, setProdutos] = useState<IProduto[]>([]);
-
-    // const [estoque, setEstoque] = useState(10);
-    // const [quantidade, setQuantidade] = useState(0);
-    const [total, setTotal] = useState(0);
+    const [produtos, setProdutos] = useState<IProduto[] | any>([]);
+    const [totalCompras, setTotalCompras] = useState(0);
 
     useEffect(() => {
         const pre_popular_produtor = async () => {
-            // setLoading(true);
             await setTimeout(() => {
-                    setProdutos([
-                        {idProduto: 1, quantidade: 10, valorUnitario: 2.50},
-                        {idProduto: 2, quantidade: 10, valorUnitario: 2.50},
-                        {idProduto: 3, quantidade: 10, valorUnitario: 2.50},
-                        {idProduto: 4, quantidade: 10, valorUnitario: 2.50},
-                    ]);
-                    // setLoading(false);
-                }, 3000);
+                setProdutos([
+                    {idProduto: 1, quantidade: 1, valorUnitario: 10},
+                    {idProduto: 2, quantidade: 1, valorUnitario: 10},
+                    {idProduto: 3, quantidade: 1, valorUnitario: 10},
+                    {idProduto: 4, quantidade: 1, valorUnitario: 10},
+                ]);
+            }, 1000);
         };
 
         pre_popular_produtor();
     }, []);
 
-    const Somar = useCallback((idProduto: number) => {
-        // validação estoque.
+    useEffect(() => {
+        const total = produtos.reduce( (acumulador, produto) => (
+            acumulador + produto.quantidade * produto.valorUnitario
+        ), 0);
+        setTotalCompras(total);
+    }, [produtos]);
 
-        const produtos_atualizados = produtos.map((produto: IProduto) => {
-            if (produto.idProduto == idProduto){
+    const Somar = useCallback((idProduto: number) => {
+        const qtdEstoque = 10;
+        const produtos_atualizados = produtos.map( (produto: IProduto) => {
+            if (produto.idProduto === idProduto && produto.quantidade < qtdEstoque) {
                 return {...produto, quantidade: produto.quantidade + 1}
             }
-
             return {...produto}
         });
 
-        // setTotal(0);
         setProdutos(produtos_atualizados);
-
-        // if (estoque > 0) {
-        //     const nova_quantidade = quantidade + 1;
-        //     setEstoque(estoque - 1);
-        //     setQuantidade(nova_quantidade);
-        //     setTotal(nova_quantidade * 10);
-        // }
-    }, [/*quantidade, estoque,*/ produtos]);
+    }, [produtos]);
 
     const Subtrair = useCallback((idProduto: number) => {
-        // validação estoque.
-
+        const qtdEstoque = 10;
         const produtos_atualizados = produtos.map((produto: IProduto) => {
-            if (produto.idProduto == idProduto){
+            if (produto.idProduto === idProduto && produto.quantidade < qtdEstoque && produto.quantidade > 0){
                 return {...produto, quantidade: produto.quantidade - 1}
             }
-
             return {...produto}
         });
 
-        // setTotal(0);
         setProdutos(produtos_atualizados);
+    }, [produtos]);
 
-        // if (quantidade > 0) {
-        //     const nova_quantidade = quantidade - 1;
-        //     setEstoque(estoque + 1);
-        //     setQuantidade(nova_quantidade);
-        //     setTotal(nova_quantidade * 10);
-        // }
-    }, [/*quantidade, estoque*/, produtos]);
+    const Deleta = (idProduto: number) => {
+        const produtos_atualizados = produtos.filter((produto: IProduto) => produto.idProduto !== idProduto);
+
+        setProdutos(produtos_atualizados);
+    }
 
     return (
         
         <form method="post" action="" className="container">
-
             <div className="my-5">
                 <h1 className="titulo_simples">Carrinho</h1>
             </div>
 
             {/* PRODUTOS  */}
             <div>
-
                 {produtos.map((produto:IProduto) => (
                     <div className="card_produto position-relative d-block d-lg-flex align-items-center text-center text-lg-left py-5 py-lg-3 mb-4 mb-lg-0" key={produto.idProduto}>
-                    <div className="mb-3 mb-lg-0 flex-grow-1">
-                        <img className="img-fluid rounded" src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Imagem" />
-                    </div>
-
-                    <div className="mb-3 mb-lg-0 flex-grow-1">
-                        <h2 className="m-0">Lorem ipsum dolor sit</h2>
-                    </div>
-
-                    <div className="mb-3 mb-lg-0 flex-grow-1">
-                        <Contador onSomar={() => Somar(produto.idProduto)} onSubtrair={() => Subtrair(produto.idProduto)} quantidade={produto.quantidade} className="control_number mx-auto" />
-                    </div>
-
-                    <div className="card_produto_total flex-grow-1">
-                        {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 } )}
-                    </div>
-
-                    <div className="card_produto_delete">
-                        <button className="bt_produto_delete">
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <path d="M17 1L1 17" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M1 1L17 17" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                ))}
-
-
-                {/* {[carrinho].map((produto: ICarrinho) => (
-                    <div className="card_produto position-relative d-block d-lg-flex align-items-center text-center text-lg-left py-5 py-lg-3 mb-4 mb-lg-0" key={index}>
+                        { console.log(produto) }
                         <div className="mb-3 mb-lg-0 flex-grow-1">
                             <img className="img-fluid rounded" src="https://dummyimage.com/400x4:3.png/09f/fff" alt="Imagem" />
                         </div>
-
                         <div className="mb-3 mb-lg-0 flex-grow-1">
                             <h2 className="m-0">Lorem ipsum dolor sit</h2>
                         </div>
 
                         <div className="mb-3 mb-lg-0 flex-grow-1">
-                            <Contador onSomar={(produto.idProduto))} onSubtrair={Subtrair} quantidade={quantidade} className="control_number mx-auto" />
+                            <Contador onSomar={() => Somar(produto.idProduto)} onSubtrair={() => Subtrair(produto.idProduto)} quantidade={produto.quantidade} className="control_number mx-auto" />
                         </div>
 
                         <div className="card_produto_total flex-grow-1">
-                            {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 } )}
+                            {(produto.quantidade * produto.valorUnitario).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}
                         </div>
 
                         <div className="card_produto_delete">
-                            <button className="bt_produto_delete">
+                            <button className="bt_produto_delete" type="button" onClick={() => Deleta(produto.idProduto)}>
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                     <path d="M17 1L1 17" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M1 1L17 17" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -147,8 +103,7 @@ const Carrinho: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                ))} */}
-
+                ))}
             </div>
 
             <div className="d-lg-flex">
@@ -209,7 +164,9 @@ const Carrinho: React.FC = () => {
                         <tbody>
                             <tr>
                                 <td>COMPRAS</td>
-                                <td id="resumo_vlr_compras" className="text-right">R$ 99,99</td>
+                                <td id="resumo_vlr_compras" className="text-right">
+                                    {totalCompras.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}
+                                </td>
                             </tr>
                             <tr>
                                 <td>FRETE</td>
@@ -221,7 +178,9 @@ const Carrinho: React.FC = () => {
                             </tr>
                             <tr>
                                 <td className="font-weight-bold" style={{lineHeight: '38px'}}>TOTAL</td>
-                                <td id="resumo_vlr_total" className="font-weight-bold text-right">R$ 99,99</td>
+                                <td id="resumo_vlr_total" className="font-weight-bold text-right">
+                                    {totalCompras.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
