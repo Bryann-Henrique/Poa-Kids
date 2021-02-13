@@ -8,29 +8,35 @@ import Header from './components/Header';
 
 import Erro from './pages/Erro';
 import Home from './pages/Home';
+import Sobre from './pages/Sobre';
 import Produto from './pages/Produto';
 import Carrinho from './pages/Carrinho';
 import Pagamento from './pages/Pagamento';
+import Confirmacao from './pages/Confirmacao';
+import Pedido from './pages/Pedido';
 
 const App: React.FC = () => {
   return (
     <>
       <Geral />
       <Componentes />
-      
-      <Header />
 
       <BrowserRouter>
+        <Header />
+
         <Switch>
           <Route path="/" exact={true} component={Home} />
+          <Route path="/Sobre" component={Sobre} />
           <Route path="/produto" component={Produto} />
           <Route path="/carrinho" component={Carrinho} />
           <Route path="/pagamento" component={Pagamento} />
+          <Route path="/confirmacao" component={Confirmacao} />
+          <Route path="/pedido" component={Pedido} />
           <Route path="*" component={Erro} />
         </Switch>  
-      </BrowserRouter>
 
-      <Footer />
+        <Footer />
+      </BrowserRouter>
     </>
   )
 }

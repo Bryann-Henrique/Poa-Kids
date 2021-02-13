@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-import './style.css';
+import Style from './style';
 
 const Home: React.FC = () => {
-
     const isInViewport = (element: any) => {
         var rect = element.getBoundingClientRect();
         var html = document.documentElement;
@@ -30,6 +29,8 @@ const Home: React.FC = () => {
 
     return (
         <>
+            <Style />
+
             {/* <div id="carrocel" className="container">
                 <div id="slider_container">
                     <div id="prev">
@@ -64,7 +65,6 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </div> */}
-
 
             <div id="destaques" className="mt-5 position-relative container-sm">
 
@@ -113,9 +113,11 @@ const Home: React.FC = () => {
                 </div>
             
                 <div className="container-sm d-flex flex-wrap">
-                    {["vestidos", "camisas", "sapatos", "calças", "shorts", "roupas de banho"].map( (value, index) => {
-                        return <div className="categoria_item p-3" key={index} ><a href="none">{value}</a></div>;
-                    })}
+                    {["vestidos", "camisas", "sapatos", "calças", "shorts", "roupas de banho"].map( (value, index) => 
+                        <div className="categoria_item p-3" key={index} >
+                            <a href="none">{value}</a>
+                        </div>
+                    )}
                 </div>
             </div>
             

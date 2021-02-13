@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import Style from './style';
 
 import user from '../../assets/img/icons/form/user.svg';
 import telefone from '../../assets/img/icons/form/telefone.svg';
@@ -8,10 +11,7 @@ import creditCard from '../../assets/img/icons/form/credit-card.svg';
 import calendario from '../../assets/img/icons/form/calendario.svg';
 import cadeado from '../../assets/img/icons/form/cadeado.svg';
 
-import './style.css';
-
 const Pagamento = () => {
-
     const [disabledCheck, setDisabledCheck] = useState(false)
     const [showFormFatura, setShowFormFatura] = useState(true)
 
@@ -21,6 +21,9 @@ const Pagamento = () => {
     }
 
     return (
+        <>
+        <Style />
+
         <form action="" method="post" className="container">
             <div className="my-5">
                 <h1 className="titulo_simples">SEUS DADOS</h1>
@@ -271,33 +274,10 @@ const Pagamento = () => {
                         <div className="form-group col-12 col-lg-3 p-0">
                             <select id="fatura_uf" className="select_custom form-control" defaultValue="UF" onChange={()=>{}} style={{height: '48px'}}>
                                 <option value="UF" disabled>UF</option>
-                                <option value="AC">AC</option>
-                                <option value="AL">AL</option>
-                                <option value="AP">AP</option>
-                                <option value="AM">AM</option>
-                                <option value="BA">BA</option>
-                                <option value="CE">CE</option>
-                                <option value="DF">DF</option>
-                                <option value="ES">ES</option>
-                                <option value="GO">GO</option>
-                                <option value="MA">MA</option>
-                                <option value="MT">MT</option>
-                                <option value="MS">MS</option>
-                                <option value="MG">MG</option>
-                                <option value="PA">PA</option>
-                                <option value="PB">PB</option>
-                                <option value="PR">PR</option>
-                                <option value="PE">PE</option>
-                                <option value="PI">PI</option>
-                                <option value="RJ">RJ</option>
-                                <option value="RN">RN</option>
-                                <option value="RS">RS</option>
-                                <option value="RO">RO</option>
-                                <option value="RR">RR</option>
-                                <option value="SC">SC</option>
-                                <option value="SP">SP</option>
-                                <option value="SE">SE</option>
-                                <option value="TO">TO</option>
+
+                                {"AC,AL,AP,AM,BA,CE,DF,ES,GO,MA,MT,MS,MG,PA,PB,PR,PE,PI,RJ,RN,RS,RO,RR,SC,SP,SE,TO".split(',').map((item, index) => (
+                                    <option value={item} key={index}>{item}</option>
+                                ))}
                             </select>
 
                             <div className="d-block">
@@ -390,33 +370,10 @@ const Pagamento = () => {
                             <div className="form-group col-12 col-lg-3 p-0">
                                 <select id="recebimento_uf" className="select_custom form-control" defaultValue="UF" onChange={()=>{}} style={{height: '48px'}}>
                                     <option value="UF" disabled>UF</option>
-                                    <option value="AC">AC</option>
-                                    <option value="AL">AL</option>
-                                    <option value="AP">AP</option>
-                                    <option value="AM">AM</option>
-                                    <option value="BA">BA</option>
-                                    <option value="CE">CE</option>
-                                    <option value="DF">DF</option>
-                                    <option value="ES">ES</option>
-                                    <option value="GO">GO</option>
-                                    <option value="MA">MA</option>
-                                    <option value="MT">MT</option>
-                                    <option value="MS">MS</option>
-                                    <option value="MG">MG</option>
-                                    <option value="PA">PA</option>
-                                    <option value="PB">PB</option>
-                                    <option value="PR">PR</option>
-                                    <option value="PE">PE</option>
-                                    <option value="PI">PI</option>
-                                    <option value="RJ">RJ</option>
-                                    <option value="RN">RN</option>
-                                    <option value="RS">RS</option>
-                                    <option value="RO">RO</option>
-                                    <option value="RR">RR</option>
-                                    <option value="SC">SC</option>
-                                    <option value="SP">SP</option>
-                                    <option value="SE">SE</option>
-                                    <option value="TO">TO</option>
+
+                                    {"AC,AL,AP,AM,BA,CE,DF,ES,GO,MA,MT,MS,MG,PA,PB,PR,PE,PI,RJ,RN,RS,RO,RR,SC,SP,SE,TO".split(',').map((item, index) => (
+                                        <option value={item} key={index}>{item}</option>
+                                    ))}
                                 </select>
 
                                 <div className="d-block">
@@ -494,42 +451,18 @@ const Pagamento = () => {
                 </div>
 
                 <div className="mb-4">
-
-
-                    <div className="card_resumo d-flex align-items-center mb-3">
-                        <div className="mr-3">
-                            <img className="img-fluid" src="https://dummyimage.com/100x100.png/09f/fff" alt="Icone" />
+                    {[...Array(3)].map((value, index) => ( 
+                        <div className="card_resumo d-flex align-items-center mb-3" key={index}>
+                            <div className="mr-3">
+                                <img className="img-fluid" src="https://dummyimage.com/100x100.png/09f/fff" alt="Icone" />
+                            </div>
+                            <div>
+                                <h3 className="card_resumo_titulo m-0">Titulo da peça</h3>
+                                <p className="card_resumo_qtd m-0">Quantidade - <span id="qtd">99</span></p>
+                                <p className="card_resumo_total m-0">R$ 99,99</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="card_resumo_titulo m-0">Titulo da peça</h3>
-                            <p className="card_resumo_qtd m-0">Quantidade - <span id="qtd">99</span></p>
-                            <p className="card_resumo_total m-0">R$ 99,99</p>
-                        </div>
-                    </div>
-
-                    <div className="card_resumo d-flex align-items-center mb-3">
-                        <div className="mr-3">
-                            <img className="img-fluid" src="https://dummyimage.com/100x100.png/09f/fff" alt="Icone" />
-                        </div>
-                        <div>
-                            <h3 className="card_resumo_titulo m-0">Titulo da peça</h3>
-                            <p className="card_resumo_qtd m-0">Quantidade - <span id="qtd">99</span></p>
-                            <p className="card_resumo_total m-0">R$ 99,99</p>
-                        </div>
-                    </div>
-
-                    <div className="card_resumo d-flex align-items-center mb-3">
-                        <div className="mr-3">
-                            <img className="img-fluid" src="https://dummyimage.com/100x100.png/09f/fff" alt="Icone" />
-                        </div>
-                        <div>
-                            <h3 className="card_resumo_titulo m-0">Titulo da peça</h3>
-                            <p className="card_resumo_qtd m-0">Quantidade - <span id="qtd">99</span></p>
-                            <p className="card_resumo_total m-0">R$ 99,99</p>
-                        </div>
-                    </div>
-
-
+                    ))}
                 </div>
 
                 <div className="pt-1" style={{borderTop: '1px solid #eee'}}>
@@ -555,13 +488,13 @@ const Pagamento = () => {
                     </table>
 
                     <div className="mt-4 d-flex justify-content-end">
-                        <button id="btn_prosseguir" className="btn_principal mb-2 col-12 col-md-6 col-lg-4" type="submit">PAGAR</button>
+                        <Link to='/confirmacao' className="btn_principal mb-2 col-12 col-md-6 col-lg-4">PAGAR</Link>
+                        {/* <button id="btn_prosseguir" className="btn_principal mb-2 col-12 col-md-6 col-lg-4" type="submit">PAGAR</button> */}
                     </div>
                 </div>
             </div>
         </form>
-
-
+        </>
     );
 }
 

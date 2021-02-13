@@ -4,6 +4,7 @@ import logo from '../../assets/img/logomarca.png';
 import menu from '../../assets/img/icons/menu.svg';
 
 import './style.css';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
 
@@ -21,7 +22,7 @@ const Header: React.FC = () => {
 
                     {/* CARRINHO  */}
                     <div className="position-relative order-1 order-lg-2 d-flex align-items-center">
-                        <a href="none" className="btn-pedido d-none d-lg-inline">MEUS PEDIDOS</a>
+                        <Link to="/pedido" className="btn-pedido d-none d-lg-inline">MEUS PEDIDOS</Link>
 
                         <button id="cart" className="d-inline-block">
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -39,38 +40,19 @@ const Header: React.FC = () => {
 
                             <div id="carrinho_conteudo">
 
-                                <div className="carrinho_item d-flex justify-content-between align-items-center mb-3">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded mr-2" src="https://dummyimage.com/60x60.png/09f/fff" alt="Imagem produto" />
-                                        <div>
-                                            <div className="carrinho_peca_titulo mb-1">Titulo da peça</div>
-                                            <div>R$ 99,99</div>
+                                {[...Array(3)].map((value, index) => (
+                                    <div className="carrinho_item d-flex justify-content-between align-items-center mb-3" key={index}>
+                                        <div className="d-flex align-items-center">
+                                            <img className="rounded mr-2" src="https://dummyimage.com/60x60.png/09f/fff" alt="Imagem produto" />
+                                            <div>
+                                                <div className="carrinho_peca_titulo mb-1">Titulo da peça</div>
+                                                <div>R$ 99,99</div>
+                                            </div>
                                         </div>
+                                        <div>x2</div>
                                     </div>
-                                    <div>x2</div>
-                                </div>
+                                ))}
 
-                                <div className="carrinho_item d-flex justify-content-between align-items-center mb-3">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded mr-2" src="https://dummyimage.com/60x60.png/09f/fff" alt="Imagem produto" />
-                                        <div>
-                                            <div className="carrinho_peca_titulo mb-1">Titulo da peça</div>
-                                            <div>R$ 99,99</div>
-                                        </div>
-                                    </div>
-                                    <div>x2</div>
-                                </div>
-
-                                <div className="carrinho_item d-flex justify-content-between align-items-center mb-3">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded mr-2" src="https://dummyimage.com/60x60.png/09f/fff" alt="Imagem produto" />
-                                        <div>
-                                            <div className="carrinho_peca_titulo mb-1">Titulo da peça</div>
-                                            <div>R$ 99,99</div>
-                                        </div>
-                                    </div>
-                                    <div>x2</div>
-                                </div>
 
                             </div>
 
@@ -87,15 +69,15 @@ const Header: React.FC = () => {
                     <div id="menu_opcoes" className="menu_opcoes collapse navbar-collapse order-3 order-lg-1">
                         <ul className="navbar-nav w-100 justify-content-center align-items-center pt-4 pt-lg-0 d-lg-flex">
                             <li className="nav-item text-center active">
-                                <a className="nav-link" href="none">HOME</a>
+                                <Link to="/" className="nav-link">HOME</Link>
                             </li>
 
                             <li className="nav-item text-center">
-                                <a className="nav-link" href="none">DÚVIDAS</a>
+                                <Link to="/pedido" className="nav-link">DÚVIDAS</Link>
                             </li>
 
                             <li className="nav-item text-center">
-                                <a className="nav-link" href="none">SOBRE NÓS</a>
+                                <Link to="/sobre" className="nav-link">SOBRE NÓS</Link>
                             </li>
                         </ul>
                     </div>
@@ -109,9 +91,9 @@ const Header: React.FC = () => {
                             <div id="menu_content">
                                 <div>
                                     <ul id="menu_mobile_list" className="list-unstyled">
-                                        <li><a href="none">HOME</a></li>
-                                        <li><a href="none">PEDIDOS</a></li>
-                                        <li><a href="none">SOBRE</a></li>
+                                        <li><Link to="/">HOME</Link></li>
+                                        <li><Link to="/pedido">PEDIDOS</Link></li>
+                                        <li><Link to="/sobre" className="nav-link">SOBRE NÓS</Link></li>
                                     </ul>
                                 </div>
 
@@ -138,7 +120,7 @@ const Header: React.FC = () => {
                             </div>
 
                             <button id="menu_mobile_close">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path d="M22 2L2 22" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M2 2L22 22" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>

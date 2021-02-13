@@ -7,7 +7,7 @@ import SelectColor from "../../components/SelectColor";
 import SelectSize from "../../components/SelectSize";
 import Contador from "../../components/Contador";
 
-import './style.css';
+import Style from './style';
 
 const Produto: React.FC = () => {
     const settings = {
@@ -49,6 +49,8 @@ const Produto: React.FC = () => {
 
     return (
         <>
+            <Style />
+
             <div className="d-lg-flex container-lg px-0 mt-lg-5">
                 {/* CARROCEL */}
                 <div className="container align-self-lg-start divide_tela mb-3">

@@ -55,6 +55,8 @@ export default createGlobalStyle`
     }
     .btn_principal:hover {
         background: #DD3C88;
+        color: white;
+        text-decoration: none;
     }
     .btn_secundario:hover {
         border: 1px solid #EF5FA3;
