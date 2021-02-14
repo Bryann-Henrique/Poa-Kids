@@ -16,9 +16,9 @@ const Header: React.FC = () => {
                         <img src={menu} alt="MENU" />
                     </button>
 
-                    <a className="navbar-brand m-0" href="/">
+                    <Link to="/" className="navbar-brand m-0" >
                         <img src={logo} alt="logomarca top arraial" />
-                    </a>
+                    </Link>
 
                     {/* CARRINHO  */}
                     <div className="position-relative order-1 order-lg-2 d-flex align-items-center">

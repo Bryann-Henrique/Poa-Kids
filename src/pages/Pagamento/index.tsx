@@ -12,8 +12,9 @@ import calendario from '../../assets/img/icons/form/calendario.svg';
 import cadeado from '../../assets/img/icons/form/cadeado.svg';
 
 const Pagamento = () => {
-    const [disabledCheck, setDisabledCheck] = useState(false)
-    const [showFormFatura, setShowFormFatura] = useState(true)
+    const [aceitaTermos, setAceitaTermos] = useState(false);
+    const [disabledCheck, setDisabledCheck] = useState(true)
+    const [showFormFatura, setShowFormFatura] = useState(false)
 
     const LiberaCheck = (e) => {
         const target = e.target;
@@ -432,7 +433,7 @@ const Pagamento = () => {
 10. Não está incluso no valor a taxa de embarque na marina dos pescadores e os passeios de barco em Arraial do Cabo, o valor de R$ 10 será paga no check-in;`} />
 
                 <div className="custom-control custom-checkbox mt-3">
-                    <input id="termos_condicoes_check" type="checkbox" className="custom-control-input" disabled={disabledCheck} />
+                    <input id="termos_condicoes_check" onChange={(e) => setAceitaTermos(e.target.checked)} type="checkbox" className="custom-control-input" disabled={disabledCheck} />
                     <label id="termos_condicoes_check_label" className={`custom-control-label font-weight-bold ${!disabledCheck && 'anima_termos_condicoes'}`} htmlFor="termos_condicoes_check">
                         Concordo com os termos e condições
                     </label>
@@ -488,7 +489,7 @@ const Pagamento = () => {
                     </table>
 
                     <div className="mt-4 d-flex justify-content-end">
-                        <Link to='/confirmacao' className="btn_principal mb-2 col-12 col-md-6 col-lg-4">PAGAR</Link>
+                        <Link to="/confirmacao" onClick={ (e) => !aceitaTermos && e.preventDefault() } className="btn_principal mb-2 col-12 col-md-6 col-lg-4">PAGAR</Link>
                         {/* <button id="btn_prosseguir" className="btn_principal mb-2 col-12 col-md-6 col-lg-4" type="submit">PAGAR</button> */}
                     </div>
                 </div>
