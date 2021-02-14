@@ -4,6 +4,7 @@ import Style from './style';
 
 import userImg from '../../assets/img/icons/form/user.svg';
 import idImg from '../../assets/img/icons/form/id.svg';
+import { Link } from 'react-router-dom';
 
 const Pedido: React.FC = () => {
     
@@ -81,7 +82,7 @@ const Pedido: React.FC = () => {
                                     {[...Array(4)].map((value, index) => (
                                         <tr key={index}>
                                             <td className="p-2 text-center">
-                                                <a href="none" className="btn btn_pedido_detalhe">
+                                                <Link to="/pedidodetalhe" className="btn btn_pedido_detalhe">
                                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                                                         <g clipPath="url(#clip0)">
                                                             <path d="M13.4874 5.76256C14.1708 6.44598 14.1708 7.55402 13.4874 8.23743C12.804 8.92085 11.696 8.92085 11.0126 8.23743C10.3291 7.55402 10.3291 6.44598 11.0126 5.76256C11.696 5.07915 12.804 5.07915 13.4874 5.76256Z" fill="#454545" />
@@ -94,7 +95,7 @@ const Pedido: React.FC = () => {
                                                             </clipPath>
                                                         </defs>
                                                     </svg>
-                                                </a>
+                                                </Link>
                                             </td>
                                             <td className="p-2">04/12/2020</td>
                                             <td className="p-2">04/12/2020</td>

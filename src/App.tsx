@@ -14,6 +14,7 @@ import Carrinho from './pages/Carrinho';
 import Pagamento from './pages/Pagamento';
 import Confirmacao from './pages/Confirmacao';
 import Pedido from './pages/Pedido';
+import PedidoDetalhe from './pages/PedidoDetalhe';
 
 const App: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           <Route path="/pagamento" component={Pagamento} />
           <Route path="/confirmacao" component={Confirmacao} />
           <Route path="/pedido" component={Pedido} />
+          <Route path="/pedidodetalhe" component={PedidoDetalhe} />
           <Route path="*" component={Erro} />
         </Switch>  
 
