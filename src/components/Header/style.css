@@ -182,8 +182,8 @@
     position: absolute;
     right: -30px;
     top: 100px;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
     width: 80vw;
     background-color: #eee;
     border-radius: 8px;

@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/img/logomarca.png';
 import menu from '../../assets/img/icons/menu.svg';
 
 import './style.css';
-import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
-
     return (
         <div>
             <nav id="menu" className="navbar p-0 fixed-top navbar-expand-lg navbar-light">
@@ -33,13 +32,13 @@ const Header: React.FC = () => {
                             <span id="cart_qtd">0</span>
                         </button>
 
+
                         <div className="carrinho_container p-3">
                             <div className="carrinho_triangulo d-none d-lg-block"></div>
 
                             <h3 className="carrinho_titulo">MEU CARRINHO</h3>
 
                             <div id="carrinho_conteudo">
-
                                 {[...Array(3)].map((value, index) => (
                                     <div className="carrinho_item d-flex justify-content-between align-items-center mb-3" key={index}>
                                         <div className="d-flex align-items-center">
@@ -52,8 +51,6 @@ const Header: React.FC = () => {
                                         <div>x2</div>
                                     </div>
                                 ))}
-
-
                             </div>
 
                             <div className="d-flex justify-content-between mb-3 font-weight-bold">
@@ -63,6 +60,7 @@ const Header: React.FC = () => {
 
                             <a href="none" className="btn_principal py-3 py-md-2" style={{color: 'white', fontSize: '1rem'}}>VER CARRINHO</a>
                         </div>
+
                     </div>
 
                     {/* DESKTOP  */}

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from 'react-router-dom';
+import { Transition } from 'react-transition-group';
 
 import Style from './style';
 
 const Home: React.FC = () => {
+    const [showCart, setShowCart] = useState(false);
+    const nodeRef = useRef(null)
+
     const isInViewport = (element: any) => {
         var rect = element.getBoundingClientRect();
         var html = document.documentElement;
@@ -25,48 +29,22 @@ const Home: React.FC = () => {
         }
     }
 
-
-
     return (
         <>
             <Style />
 
-            {/* <div id="carrocel" className="container">
-                <div id="slider_container">
-                    <div id="prev">
-                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="42" height="42" fill="white" />
-                            <path d="M26.25 31.5L15.75 21L26.25 10.5" stroke="#646464" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </div>
-            
-                    <div id="slider_box">
-                        <div className="slider_custom">
-                            <div className="slider_box_img">
-                                <img src="https://dummyimage.com/400x300.png/09f/fff" alt="imagem carrocel" />
-                            </div>
-                            <div className="slider_box_img">
-                                <img src="https://dummyimage.com/400x300.png/09f/fff" alt="imagem carrocel" />
-                            </div>
-                            <div className="slider_box_img">
-                                <img src="https://dummyimage.com/400x300.png/09f/fff" alt="imagem carrocel" />
-                            </div>
-                            <div className="slider_box_img">
-                                <img src="https://dummyimage.com/400x300.png/09f/fff" alt="imagem carrocel" />
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div id="next">
-                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="42" height="42" fill="white" />
-                            <path d="M15.75 31.5L26.25 21L15.75 10.5" stroke="#646464" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </div>
-            </div> */}
-
             <div id="destaques" className="mt-5 position-relative container-sm">
+
+                <div className="mb-5">
+                    <button className='px-3 d-block' onClick={ () => setShowCart(!showCart) }>state: {showCart && '1'}</button>
+
+                    <Transition nodeRef={nodeRef} in={showCart} timeout={500}>
+                        {state => (
+                            <div>teste</div>
+                        )}
+                    </Transition>
+
+                </div>
 
                 <div className="mb-3">
                     <h2 className="titulo_secao">Destaques da semana</h2>
