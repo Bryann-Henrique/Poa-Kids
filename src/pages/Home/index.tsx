@@ -38,7 +38,7 @@ const Home: React.FC = () => {
                 <div className="mb-5">
                     <button className='px-3 d-block' onClick={ () => setShowCart(!showCart) }>state: {showCart && '1'}</button>
 
-                    <Transition nodeRef={nodeRef} in={showCart} timeout={500}>
+                    <Transition nodeRef={nodeRef} in={showCart} timeout={500} unmountOnExit>
                         {state => (
                             <div>teste</div>
                         )}
